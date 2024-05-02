@@ -1,5 +1,4 @@
-﻿using FoodApp.Dto;
-using System;
+using FoodApp.Dto;
 namespace FoodApp.Services
 {
     public class FoodAppService : IFoodAppService
@@ -8,6 +7,11 @@ namespace FoodApp.Services
         public FoodAppService(AppDbContext context)
         {
             _context = context;
+        }
+        public List<models.Food> GetAllFood()
+        {
+            var allFood = _context.FoodApp.ToList();
+            return allFood;
         }
         public models.Food AddFoodApp(PostFoodDto food)
         {
@@ -23,10 +27,10 @@ namespace FoodApp.Services
 
             return newFood;
         }
-        public void DeleteFoodApp(string name)
+        public void DeleteFoodApp(int gr)
         {
             var foodDb = _context.FoodApp
-                .FirstOrDefault(n => n.Name == name);
+                .FirstOrDefault(n => n.Gr == gr);
 
             _context.FoodApp.Remove(foodDb);
             _context.SaveChanges();
