@@ -1,13 +1,14 @@
-﻿using FoodApp.Dto;
+using FoodApp.Dto;
 using System.Reflection;
 namespace FoodApp.Services
 {
-    public interface IFoodAppService 
+    public interface IFoodAppService
     {
-        models.Food GetFoodAppByName(string  name);
+        List<models.Food> GetAllFood();
+        models.Food GetFoodAppByName(string name);
         models.Food AddFoodApp(PostFoodDto foodapp);
         models.Food UpdateFoodApp(PutFoodDto foodappData, string name);
-        void DeleteFoodApp(string name);
+        void DeleteFoodApp(int gr);
 
     }
 }
